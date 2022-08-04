@@ -46,10 +46,12 @@ class UserController extends Controller
         } else {
             Session::put('Details', $user);
             $data= Session::get('Details');
+            $token = $user->createToken('my-app-token')->plainTextToken;
 
             return response([
                 'message' => ['Login sucess Welcome '],
-                'data'=>$data
+                'data'=>$data,
+                'token'=>$token
             ]);
         }
     }
